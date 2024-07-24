@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #e7e6e6;
+}
+
+.wrap {
+  width: 500px;
+  height: 500px;
+  margin: 200px auto;
+}
+
+.clock {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border-radius: 50%;
+  background: #fff url(bg.png) no-repeat center;
+  background-size: 100%;
+}
+
+.hours-wrap,
+.minutes-wrap,
+.seconds-wrap {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
+.point {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -15px;
+  margin-top: -15px;
+  border-radius: 50%;
+  background: black;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.hours-wrap {
+  animation: rotate 43200s infinite linear;
+}
+
+.minutes-wrap {
+  animation: rotate 3600s infinite steps(60);
+}
+
+.seconds-wrap {
+  animation: rotate 60s infinite steps(60);
+}
+
+.hours {
+  width: 2%;
+    height: 40%;
+    position: absolute;
+    top: 22%;
+    left: 48.25%;
+    transform-origin: 50% 71%;
+    background: black;
+}
+
+.minutes {
+  width: 2%;
+  height: 55%;
+  position: absolute;
+  top: 7%;
+  left: 48.25%;
+  transform-origin: 50% 78.5%;
+  background: #000;
+}
+
+.seconds {
+  width: 1%;
+  height: 45%;
+  position: absolute;
+  top: 14%;
+  left: 49.5%;
+  transform-origin: 50% 80%;
+  z-index: 8;
+  background: red;
+}
+
+.info {
+  top: 25%;
+  left: 43%;
+  position: absolute;
+  font-size: 24px;
+  text-align: center;
+}
+#week {
+  margin-top: 10px;
+  font-size: 20px;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>simple-clock</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="clock">
+    <div class="hours-wrap">
+      <div class="hours"></div>
+    </div>
+    <div class="minutes-wrap">
+      <div class="minutes"></div>
+    </div>
+    <div class="seconds-wrap">
+      <div class="seconds"></div>
+    </div>
+    <div class="point"></div>
+    <div class="info">
+      <div id="date">-月-日</div>
+      <div id="week">星期一</div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function initClock() {
+    var date = new Date;
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+		var weekString = '星期' + ['天', '一', '二', '三', '四', '五', '六'][date.getDay()];
+
+    document.getElementById("date").innerHTML =  (date.getMonth() + 1) + '月' + date.getDate() + '日';
+		document.getElementById("week").innerHTML = weekString;
+
+    var hands = [
+      { hand: 'hours', angle: (hours * 30) + (minutes / 2)},
+      { hand: 'minutes', angle: (minutes * 6)},
+      { hand: 'seconds', angle: (seconds * 6)}];
+    for (var hand = 0; hand < hands.length; hand++) {
+      var elements = document.querySelectorAll('.clock .' + hands[hand].hand);
+      for (var element = 0; element < elements.length; element++) {
+        elements[element].style.transform = 'rotateZ(' + hands[hand].angle + 'deg)';
+        if (hands[hand].hand === 'minutes') elements[element].parentNode.setAttribute('data-second-angle', hands[hand + 1].angle);
+      }
+    }
+  }
+
+  initClock();
+</script>
+</body>
+</html>
